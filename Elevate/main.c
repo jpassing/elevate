@@ -130,23 +130,32 @@ int __cdecl wmain(
 	__in WCHAR* Argv[]
 	)
 {
-	OSVERSIONINFO OsVer;
+	OSVERSIONINFOEX OsVer;
 	COMMAND_LINE_ARGS Args;
+	DWORD VerifyVersionFlags;
+	DWORDLONG VersionConditionMask;
+
 	INT Index;
 	BOOL FlagsRead = FALSE;
 	WCHAR CommandLineBuffer[ 260 ] = { 0 };
 
-	ZeroMemory( &OsVer, sizeof( OSVERSIONINFO ) );
-	OsVer.dwOSVersionInfoSize = sizeof( OSVERSIONINFO );
-	
+	ZeroMemory( &OsVer, sizeof( OSVERSIONINFOEX ) );
+	OsVer.dwOSVersionInfoSize = sizeof( OSVERSIONINFOEX );
+	VersionConditionMask = 0;
 	ZeroMemory( &Args, sizeof( COMMAND_LINE_ARGS ) );
 	Args.CommandLine = CommandLineBuffer;
 
 	//
+	// Set the version verification settings
+	//
+	OsVer.dwMajorVersion = 6;
+	VerifyVersionFlags = VER_MAJORVERSION;
+	VersionConditionMask = VerSetConditionMask(VersionConditionMask, VER_MAJORVERSION, VER_GREATER_EQUAL);
+
+	//
 	// Check OS version
 	//
-	if ( GetVersionEx( &OsVer ) &&
-		OsVer.dwMajorVersion < 6 )
+	if ( FALSE == VerifyVersionInfo( &OsVer, VerifyVersionFlags, VersionConditionMask ) )
 	{
 		fwprintf( stderr, L"This tool is for Windows Vista and above only.\n" );
 		return EXIT_FAILURE;
