@@ -86,7 +86,7 @@ INT DispatchCommand(
 			L"Usage: Elevate [-?|-wait|-k] prog [args]\n"
 			L"-?    - Shows this help\n"
 			L"-wait - Waits until prog terminates\n"
-			L"-k    - Starts the the %%COMSPEC%% environment variable value and\n"
+			L"-k    - Starts the %%COMSPEC%% environment variable value and\n"
 			L"		executes prog in it (CMD.EXE, 4NT.EXE, etc.)\n"
 			L"prog  - The program to execute\n"
 			L"args  - Optional command line arguments to prog\n" );
