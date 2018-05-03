@@ -75,7 +75,7 @@ BEGIN
             VALUE "FileVersion", "1, 0, 0, 2894"
             VALUE "InternalName", "Elevate"
             VALUE "LegalCopyright", "Copyright (C) 2007"
-            VALUE "OriginalFilename", "Elevate.exe"
+            VALUE "OriginalFilename", "elevate.exe"
             VALUE "ProductName", "Elevate Application"
             VALUE "ProductVersion", "1, 0, 0, 2894"
         END
